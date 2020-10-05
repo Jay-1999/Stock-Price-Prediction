@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+    <title>Ratina</title>
+    <meta content="Admin Dashboard" name="description">
+    <meta content="themesdesign" name="author">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../../static/userResources/images/favicon.png">
+    <link rel="stylesheet" href="adminResources/css/MetroJs.min.css">
+    <link rel="stylesheet" href="adminResources/css/morris.css">
+    <link href="../../static/adminResources/css/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+    <link href="../../static/adminResources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../static/adminResources/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="../../static/adminResources/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="../../static/adminResources/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="fixed-left"><!-- Begin page -->
+<div id="wrapper"><!-- ========== Left Sidebar Start ========== -->
+    {% include 'admin/menu.html' %}
+
+    <!-- Left Sidebar End --><!-- Start right Content here -->
+    <div class="content-page"><!-- Start content -->
+        <div class="content"><!-- Top Bar Start -->
+
+                {% include 'admin/header.html' %}
+
+            <!-- Top Bar End -->
+            <div class="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">Dashboard</h4></div>
+                        </div>
+                    </div><!-- end page title end breadcrumb -->
+                    <div class="row">
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="fa fa-user"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">TOTAL USER</h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ userdict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="fa fa-file"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">TOTAL COMPANIES</h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ companydict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="fa fa-newspaper"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">TOTAL BLOG</h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ blogDict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="fa fa-video"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">TOTAL VIDEOS</h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ videoDict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="mdi fa-dropbox"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">PENDING COMPAINT</h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ complaintDict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-3">
+                            <div class="card mini-stat">
+                                <div class="mini-stat-icon text-right"><i class="fa fa-inbox"></i></div>
+                                <div class="p-4"><h6 class="text-uppercase mb-3">FEEDBACK </h6>
+                                    <div class="float-right"><p class="mb-0"><b></b></p></div>
+                                    <h4 class="mb-0">{{ feedbackDict[0]['COUNT(*)'] }}
+{#                                        <small class="ml-2"><i class="mdi mdi-arrow-up text-primary"></i></small>#}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+
+                </div><!-- container --></div><!-- Page content Wrapper --></div>
+            <div id="container" style="width: 400px; height: 400px; "></div>
+                          {% for i in predictDict %}
+                            <input type="hidden" name="xvalue" value="{{ i.predictionDate }}" />
+                            <input type="hidden" name="yvalue" value="{{ i.predictionPrice }}" />
+                         {% endfor %}
+        <!-- content -->
+
+        {% include 'admin/footer.html' %}
+
+        <!-- <footer class="footer">© 2018 Dashor by Themesdesign.</footer> -->
+
+    </div><!-- End Right content here --></div><!-- END wrapper --><!-- jQuery  -->
+<script src="../../static/adminResources/js/jquery.min.js"></script>
+<script src="../../static/adminResources/js/popper.min.js"></script>
+<script src="../../static/adminResources/js/bootstrap.min.js"></script>
+<script src="../../static/adminResources/js/modernizr.min.js"></script>
+<script src="../../static/adminResources/js/detect.js"></script>
+<script src="../../static/adminResources/js/fastclick.js"></script>
+<script src="../../static/adminResources/js/jquery.slimscroll.js"></script>
+<script src="../../static/adminResources/js/jquery.blockUI.js"></script>
+<script src="../../static/adminResources/js/waves.js"></script>
+<script src="../../static/adminResources/js/jquery.nicescroll.js"></script>
+<script src="../../static/adminResources/js/jquery.scrollTo.min.js"></script>
+<script src="../../static/adminResources/js/MetroJs.min.js"></script>
+<script src="../../static/adminResources/js/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="../../static/adminResources/js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="../../static/adminResources/js/jquery.sparkline.min.js"></script>
+<script src="../../static/adminResources/js/morris.min.js"></script>
+<script src="../../static/adminResources/js/raphael-min.js"></script>
+<script src="../../static/adminResources/js/dashboard.js"></script><!-- App js -->
+<script src="../../static/adminResources/js/app.js"></script>
+
+<script src="../../static/adminResources/js/highcharts.js"></script>
+<script src="../../static/adminResources/js/exporting.js"></script>
+
+<script>
+var xvalue= document.getElementsByName("xvalue");
+var xdata = [];
+var yvalue= document.getElementsByName("yvalue");
+var ydata = [];
+for(var i=0;i<xvalue.length;i++)
+{
+	xdata.push(xvalue[i].value);
+	ydata.push(parseFloat(yvalue[i].value));
+}
+Highcharts.chart({
+    chart: {
+	renderTo:"container",
+
+        type: 'column'
+    },
+    title: {
+        text: 'Prediction'
+    },
+    {#subtitle: {
+        text: 'Source: WorldClimate.com'
+    },#}
+    xAxis: {
+        categories: xdata,
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Open Price'
+        }
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Date',
+        data: ydata
+
+    }]
+});
+</script>
+
+</body>
+</html>
